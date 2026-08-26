@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claribel — Parfumerie de Grasse & d'Orient, Cannes</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap');
+
+:root{
+  --paper:#FFFFFF;
+  --white:#FFFFFF;
+  --ink:#141414;
+  --ink-2:#F7F7F6;
+  --ink-3:#EDEDEB;
+  --gold:#8A7A5C;
+  --gold-light:#A5977C;
+  --rose:#C9A98C;
+  --cream:#141414;
+  --muted:#6E6D6A;
+  --line: rgba(20,20,20,0.10);
+  --glass: rgba(255,255,255,0.6);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);
+  color:var(--cream);
+  font-family:'Jost', sans-serif;
+  font-weight:300;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+::selection{background:var(--gold); color:var(--white);}
+h1,h2,h3,h4{font-family:'Cormorant Garamond', serif; font-weight:500; letter-spacing:0.01em;}
+a{color:inherit; text-decoration:none;}
+a[role="button"]{cursor:pointer;}
+img{max-width:100%; display:block;}
+button{font-family:inherit; cursor:pointer; border:none; background:none; color:inherit;}
+.eyebrow{
+  font-size:0.72rem; letter-spacing:0.28em; text-transform:uppercase;
+  color:var(--gold); font-weight:500; display:inline-flex; align-items:center; gap:10px;
+}
+.eyebrow::before{content:''; width:22px; height:1px; background:var(--gold);}
+.wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+@media(max-width:640px){.wrap{padding:0 20px;}}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+}
+
+/* ---------- banderole nouveauté ---------- */
+#newBanner{
+  position:relative; z-index:60; background:var(--ink-2); border-bottom:1px solid var(--line);
+  color:var(--gold); overflow:hidden; height:0; transition:height .4s ease;
+}
+#newBanner.show{height:38px;}
+#newBanner .track{
+  position:absolute; white-space:nowrap; display:flex; align-items:center; height:38px;
+  font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; font-weight:500;
+  animation:marquee 26s linear infinite;
+}
+#newBanner .track span{padding:0 2.2em; display:inline-flex; align-items:center; gap:.6em;}
+@keyframes marquee{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+
+/* ---------- header ---------- */
+header{
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  padding:26px 0; transition:all .45s ease;
+  border-bottom:1px solid transparent;
+}
+header.scrolled{
+  padding:16px 0; background:rgba(255,255,255,0.92); backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+header .barwrap{display:flex; align-items:center; justify-content:space-between;}
+.logo{font-family:'Cormorant Garamond',serif; font-size:1.5rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--cream); display:flex; align-items:center; gap:10px;}
+.logo b{color:var(--gold); font-weight:500;}
+nav.mainnav{display:flex; gap:38px; align-items:center;}
+nav.mainnav a{font-size:0.76rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); position:relative; padding:4px 0; transition:color .3s;}
+nav.mainnav a::after{content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--gold); transition:width .35s ease;}
+nav.mainnav a:hover{color:var(--cream);}
+nav.mainnav a:hover::after{width:100%;}
+.header-actions{display:flex; align-items:center; gap:22px;}
+.btn{
+  display:inline-flex; align-items:center; gap:8px; padding:13px 28px; font-size:0.72rem;
+  letter-spacing:0.16em; text-transform:uppercase; border-radius:0; transition:all .35s ease;
+  border:1px solid var(--ink);
+}
+.btn-gold{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+.btn-gold:hover{background:var(--gold); border-color:var(--gold); color:var(--white);}
+.btn-ghost{color:var(--cream); border-color:var(--line); background:transparent;}
+.btn-ghost:hover{border-color:var(--ink); }
+.hamburger{display:none; flex-direction:column; gap:5px; width:26px;}
+.hamburger span{height:1px; background:var(--cream); width:100%;}
+@media(max-width:900px){
+  nav.mainnav{display:none;}
+  .header-actions .btn-ghost{display:none;}
+  .hamburger{display:flex;}
+}
+
+/* mobile menu */
+#mobileMenu{position:fixed; inset:0; background:var(--paper); z-index:70; display:flex; flex-direction:column; padding:32px 28px; opacity:0; visibility:hidden; transform:translateY(-16px); transition:opacity .5s cubic-bezier(.2,.7,.2,1), transform .5s cubic-bezier(.2,.7,.2,1), visibility 0s linear .5s;}
+#mobileMenu.open{opacity:1; visibility:visible; transform:translateY(0); transition:opacity .5s cubic-bezier(.2,.7,.2,1), transform .5s cubic-bezier(.2,.7,.2,1), visibility 0s linear 0s;}
+#mobileMenu .close{align-self:flex-end; font-size:1.6rem; color:var(--gold); background:none; border:none;}
+#mobileMenu a{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.7rem; padding:16px 0; border-bottom:1px solid var(--line); color:var(--cream); opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease;}
+#mobileMenu.open a{opacity:1; transform:translateY(0);}
+#mobileMenu.open a:nth-child(2){transition-delay:.08s;}
+#mobileMenu.open a:nth-child(3){transition-delay:.14s;}
+#mobileMenu.open a:nth-child(4){transition-delay:.2s;}
+#mobileMenu.open a:nth-child(5){transition-delay:.26s;}
+#mobileMenu.open a:nth-child(6){transition-delay:.32s;}
+
+/* ---------- signature touches: intro veil, scroll progress, film grain ---------- */
+#introVeil{position:fixed; inset:0; z-index:400; background:var(--paper); display:flex; align-items:center; justify-content:center; transition:opacity .9s ease, visibility 0s linear .9s;}
+#introVeil span{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2.1rem; letter-spacing:0.14em; color:var(--ink); opacity:0; transform:scale(0.96); animation:introFadeIn 1.1s ease forwards .15s;}
+#introVeil.hide{opacity:0; visibility:hidden; pointer-events:none;}
+@keyframes introFadeIn{to{opacity:1; transform:scale(1);}}
+
+#scrollProgress{position:fixed; top:0; left:0; height:2px; width:0%; background:var(--ink); z-index:120; transition:width .1s linear;}
+
+#grainOverlay{position:fixed; inset:0; z-index:2; pointer-events:none; opacity:0.035; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- continuous background movement (site-wide, very subtle) ---------- */
+#ribbon{position:fixed; inset:0; width:100%; height:100%; z-index:0; opacity:1; pointer-events:none;}
+.site-content{position:relative; z-index:1;}
+
+/* ---------- hero ---------- */
+.hero{position:relative; min-height:96vh; display:flex; align-items:center; overflow:hidden; padding-top:110px;}
+.hero-grid{position:relative; z-index:3; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; width:100%;}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr; text-align:left; gap:44px;}}
+.hero-text h1{font-size:clamp(2.4rem,4.6vw,3.8rem); line-height:1.14; margin:26px 0 26px; font-style:italic; color:var(--cream); font-weight:400;}
+.hero-text h1 em{color:var(--gold); font-style:italic;}
+.hero-text p{color:var(--muted); max-width:420px; font-size:1rem; margin-bottom:38px; font-weight:300;}
+.hero-actions{display:flex; gap:18px; flex-wrap:wrap;}
+.hero-visual{position:relative; background:var(--ink-2); aspect-ratio:4/5; display:flex; align-items:center; justify-content:center; padding:34px;}
+.hero-visual img{width:100%; height:100%; object-fit:contain; filter:saturate(0.96) contrast(1.01);}
+.hero-visual .tag{margin-top:18px; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.05rem; color:var(--muted); text-align:center;}
+@media(max-width:900px){.hero-visual{aspect-ratio:5/4; padding:22px;}}
+.scrolldown{position:absolute; bottom:34px; left:50%; transform:translateX(-50%); z-index:4; display:flex; flex-direction:column; align-items:center; gap:8px; color:var(--muted); font-size:0.66rem; letter-spacing:0.24em; text-transform:uppercase;}
+.scrolldown .line{width:1px; height:38px; background:linear-gradient(var(--gold), transparent); animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:.3;} 50%{opacity:1;}}
+
+/* split text reveal */
+.reveal-word{display:inline-block; opacity:0; transform:translateY(28px); filter:blur(4px); transition:opacity .8s ease, transform .8s ease, filter .8s ease;}
+.reveal-word.in{opacity:1; transform:translateY(0); filter:blur(0);}
+.fade-up{opacity:0; transform:translateY(30px); transition:opacity .9s ease, transform .9s ease;}
+.fade-up.in{opacity:1; transform:translateY(0);}
+.slide-left{opacity:0; transform:translateX(-46px); transition:opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1);}
+.slide-left.in{opacity:1; transform:translateX(0);}
+.slide-right{opacity:0; transform:translateX(46px); transition:opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1);}
+.slide-right.in{opacity:1; transform:translateX(0);}
+
+/* ---------- stats ---------- */
+.stats{padding:70px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--ink-2);}
+.stats-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; text-align:center;}
+@media(max-width:800px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+.stat-num{font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,4vw,3.2rem); color:var(--gold); font-style:italic;}
+.stat-label{font-size:0.74rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-top:8px;}
+
+/* ---------- section shell ---------- */
+section{padding:120px 0; position:relative;}
+@media(max-width:700px){section{padding:80px 0;}}
+.section-head{max-width:640px; margin-bottom:64px;}
+.section-head h2{font-size:clamp(2rem,4vw,3rem); margin-top:16px; font-style:italic;}
+.section-head p{color:var(--muted); margin-top:18px; font-size:1rem; max-width:520px;}
+.divider{width:100%; height:34px; margin:0 auto;}
+.divider path{fill:none; stroke:var(--ink); stroke-width:1; opacity:0.14; stroke-dasharray:600; stroke-dashoffset:600; transition:stroke-dashoffset 1.6s ease;}
+.divider.in path{stroke-dashoffset:0;}
+
+/* ---------- promo strip ---------- */
+.promo{padding:0 20px; text-align:center; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.15rem; color:var(--gold-light); max-width:640px; margin:0 auto;}
+.promo b{color:var(--gold); font-weight:600; font-style:normal; font-family:'Jost',sans-serif; letter-spacing:.04em; font-size:0.85rem; text-transform:uppercase;}
+
+/* ---------- tabs ---------- */
+.tabs{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:52px;}
+.tab-btn{padding:10px 22px; border:1px solid var(--line); border-radius:30px; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); transition:all .3s ease;}
+.tab-btn.active, .tab-btn:hover{border-color:var(--gold); color:var(--gold);}
+.tab-panel{display:none;}
+.tab-panel.active{display:grid;}
+
+/* ---------- product cards (minimal editorial, click-to-discover) ---------- */
+.card-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:52px 40px;}
+@media(max-width:960px){.card-grid{grid-template-columns:repeat(2,1fr); gap:44px 28px;}}
+@media(max-width:640px){.card-grid{grid-template-columns:1fr;}}
+.pcard{cursor:default;}
+.pcard-img{position:relative; width:100%; aspect-ratio:4/5; overflow:hidden; background:var(--ink-2); display:flex; align-items:center; justify-content:center; padding:22px; border:none; cursor:pointer; appearance:none; -webkit-appearance:none; font:inherit; color:inherit; text-align:inherit;}
+.pcard-img img{width:100%; height:100%; object-fit:contain; transition:transform 1s cubic-bezier(.2,.7,.2,1); filter:saturate(0.97);}
+.pcard-img:hover img{transform:scale(1.045);}
+.pcard-badge{position:absolute; top:18px; left:18px; font-size:0.64rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); background:var(--white); padding:6px 12px;}
+.pcard-hint{position:absolute; bottom:16px; left:50%; transform:translate(-50%,0); opacity:0.82; font-size:0.64rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink); background:rgba(255,255,255,0.92); padding:8px 18px; transition:opacity .35s ease, transform .35s ease;}
+.pcard-img:hover .pcard-hint{opacity:1; transform:translate(-50%,-2px);}
+.pcard-body{padding-top:22px;}
+.pcard-body .pnum{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.3rem; color:var(--gold);}
+.pcard-body h3{font-size:0.92rem; text-transform:uppercase; letter-spacing:0.05em; margin:5px 0 10px; font-style:normal; font-weight:500;}
+.pcard-body .tags{font-size:0.74rem; color:var(--muted); letter-spacing:0.05em;}
+.note-line{padding-top:20px;}
+.note-line .k{font-size:0.64rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:4px;}
+.note-line .v{color:var(--muted); font-size:0.88rem; padding-bottom:2px;}
+
+/* ---------- product quick view (lightbox) ---------- */
+#quickView{position:fixed; inset:0; z-index:220; display:flex; align-items:flex-end; justify-content:center; opacity:0; visibility:hidden; transition:opacity .4s ease, visibility 0s linear .4s;}
+#quickView.open{opacity:1; visibility:visible; transition:opacity .4s ease, visibility 0s linear 0s;}
+#quickView .qv-backdrop{position:absolute; inset:0; background:rgba(20,20,20,0.5); backdrop-filter:blur(4px);}
+#quickView .qv-card{position:relative; z-index:2; background:var(--white); width:100%; max-width:920px; max-height:92vh; overflow-y:auto; margin:0 auto 0; border-radius:2px 2px 0 0; transform:translateY(40px) scale(0.98); opacity:0; transition:transform .5s cubic-bezier(.2,.7,.2,1), opacity .5s ease;}
+#quickView.open .qv-card{transform:translateY(0) scale(1); opacity:1;}
+@media(min-width:760px){
+  #quickView{align-items:center;}
+  #quickView .qv-card{border-radius:2px; margin:0;}
+}
+.qv-close{position:absolute; top:18px; right:18px; z-index:3; width:38px; height:38px; border-radius:50%; background:var(--white); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:1.1rem; color:var(--ink); transition:opacity .3s ease;}
+.qv-close:hover{opacity:0.6;}
+.qv-grid{display:grid; grid-template-columns:1fr 1fr;}
+@media(max-width:760px){.qv-grid{grid-template-columns:1fr;}}
+.qv-img{background:var(--ink-2); display:flex; align-items:center; justify-content:center; padding:40px; min-height:280px;}
+.qv-img img{width:100%; max-height:460px; object-fit:contain;}
+.qv-body{padding:44px 40px;}
+@media(max-width:640px){.qv-body{padding:32px 26px;}}
+.qv-body .pnum{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.5rem; color:var(--gold);}
+.qv-body h3{font-size:1.1rem; text-transform:uppercase; letter-spacing:0.05em; margin:6px 0 14px; font-weight:500;}
+.qv-body .tags{font-size:0.76rem; color:var(--muted); letter-spacing:0.06em; margin-bottom:22px;}
+.qv-desc{color:var(--muted); font-size:0.92rem; line-height:1.75; margin-bottom:26px;}
+.qv-notes{border-top:1px solid var(--line); padding-top:6px;}
+
+
+/* ---------- brumes ---------- */
+.brume-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:44px 36px;}
+@media(max-width:900px){.brume-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.brume-grid{grid-template-columns:1fr;}}
+.brume-card{padding-top:26px; border-top:1px solid var(--line); position:relative; transition:opacity .3s ease;}
+.brume-swatch{width:30px; height:30px; border-radius:50%; margin-bottom:22px; box-shadow:0 0 18px 1px var(--sw);}
+.brume-card h3{font-size:1.15rem; letter-spacing:0.04em; font-style:italic; font-family:'Cormorant Garamond',serif;}
+.brume-card .profile{color:var(--gold); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; margin:8px 0 12px;}
+.brume-card p{color:var(--muted); font-size:0.88rem;}
+.brume-card .price{position:absolute; top:26px; right:0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.1rem; color:var(--gold);}
+.brume-card .newtag{font-size:0.62rem; letter-spacing:0.12em; color:var(--gold); text-transform:uppercase; display:block; margin-bottom:10px;}
+
+/* ---------- savoir faire ---------- */
+.savoir{display:grid; grid-template-columns:0.9fr 1.1fr; gap:70px; align-items:center;}
+@media(max-width:900px){.savoir{grid-template-columns:1fr;}}
+.savoir-img{position:relative; height:520px; overflow:hidden; border:1px solid var(--line); background:var(--ink-2); display:flex; align-items:center; justify-content:center; padding:30px;}
+.savoir-img img{width:100%; height:100%; object-fit:contain;}
+@media(max-width:900px){.savoir-img{height:360px; padding:20px;}}
+.savoir-text h2{font-size:clamp(1.9rem,3.6vw,2.8rem); font-style:italic; margin:16px 0 22px;}
+.savoir-text p{color:var(--muted); margin-bottom:18px; max-width:520px;}
+
+/* ---------- trust badges ---------- */
+.trust-line{padding:38px 0; text-align:center; font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted);}
+.trust-line span{margin:0 18px; display:inline-block;}
+.trust-line span::before{content:'✦'; color:var(--gold); margin-right:10px; font-size:0.7em;}
+@media(max-width:700px){.trust-line span{display:block; margin:10px 0;}}
+
+/* ---------- social ---------- */
+.social-strip{display:flex; justify-content:center; gap:56px; flex-wrap:wrap; padding-top:8px;}
+.social-card{display:flex; align-items:center; gap:14px; transition:opacity .3s ease;}
+.social-card:hover{opacity:0.7;}
+.social-card .ic{width:38px; height:38px; border:1px solid var(--ink); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--ink); flex-shrink:0;}
+.social-card .ic svg{width:16px; height:16px;}
+.social-card h4{font-size:0.92rem; letter-spacing:.05em; font-weight:400;}
+.social-card p{font-size:0.76rem; color:var(--muted); margin-top:2px;}
+
+/* ---------- contact ---------- */
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px;}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;}}
+.contact-info .row{display:flex; gap:18px; padding:20px 0; border-bottom:1px solid var(--line);}
+.contact-info .row .ic{color:var(--ink); width:22px; flex-shrink:0; padding-top:2px;}
+.contact-info .row .ic svg{width:20px; height:20px;}
+.contact-info .row h4{font-size:0.9rem; letter-spacing:0.05em; margin-bottom:4px;}
+.contact-info .row p{color:var(--muted); font-size:0.9rem;}
+.mapbox{border:1px solid var(--line); height:100%; min-height:340px; filter:grayscale(0.35) contrast(1.02);}
+.mapbox iframe{width:100%; height:100%; min-height:340px; border:0; display:block;}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line); padding:60px 0 26px; background:var(--ink-2);}
+.footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:50px; margin-bottom:50px;}
+@media(max-width:800px){.footer-grid{grid-template-columns:1fr; gap:34px;}}
+.footer-grid h4{font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:18px;}
+.footer-grid a, .footer-grid p{color:var(--muted); font-size:0.88rem; display:block; margin-bottom:10px;}
+.footer-grid a:hover{color:var(--cream);}
+.footer-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:26px; border-top:1px solid var(--line); font-size:0.76rem; color:var(--muted); flex-wrap:wrap; gap:12px;}
+.footer-bottom .fb-links{display:flex; gap:18px;}
+.footer-bottom a:hover{color:var(--gold);}
+
+/* ---------- whatsapp float ---------- */
+.wa-float{position:fixed; bottom:26px; right:26px; z-index:55; width:54px; height:54px; border-radius:50%; background:var(--ink); color:var(--white); display:flex; align-items:center; justify-content:center; box-shadow:0 10px 28px rgba(0,0,0,0.18); transition:transform .3s ease, background .3s ease;}
+.wa-float:hover{transform:scale(1.08); background:var(--gold);}
+
+/* ---------- toast ---------- */
+#toast{position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--gold); color:var(--ink); padding:14px 26px; font-size:0.85rem; letter-spacing:0.04em; border-radius:2px; z-index:200; opacity:0; pointer-events:none; transition:all .35s ease; font-weight:500;}
+#toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+/* =========================================================
+   ADMIN
+   ========================================================= */
+#adminEntry{position:fixed; bottom:20px; left:20px; z-index:54; font-size:0.66rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); border:1px solid var(--line); padding:8px 14px; border-radius:20px; transition:all .3s ease; background:rgba(255,255,255,0.8); backdrop-filter:blur(6px);}
+#adminEntry:hover{color:var(--gold); border-color:var(--gold);}
+
+#adminOverlay{position:fixed; inset:0; background:rgba(10,7,10,0.88); backdrop-filter:blur(6px); z-index:300; display:none; align-items:center; justify-content:center; padding:20px;}
+#adminOverlay.open{display:flex;}
+.admin-login{background:var(--ink-2); border:1px solid var(--line); padding:44px; width:100%; max-width:380px; text-align:center;}
+.admin-login h3{font-size:1.6rem; font-style:italic; margin-bottom:8px;}
+.admin-login p{color:var(--muted); font-size:0.85rem; margin-bottom:26px;}
+.field{margin-bottom:16px; text-align:left;}
+.field label{font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:8px;}
+.field input, .field textarea, .field select{
+  width:100%; background:var(--white); border:1px solid var(--line); color:var(--cream); padding:12px 14px; font-family:'Jost',sans-serif; font-size:0.9rem; border-radius:2px;
+}
+.field textarea{resize:vertical; min-height:80px;}
+.field input:focus, .field textarea:focus, .field select:focus{outline:none; border-color:var(--gold);}
+.field-row{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+@media(max-width:520px){.field-row{grid-template-columns:1fr;}}
+.checkline{display:flex; align-items:center; gap:10px; margin-bottom:16px;}
+.checkline input{width:auto;}
+.checkline label{font-size:0.82rem; color:var(--muted); text-transform:none; letter-spacing:0;}
+.err-msg{color:#e58a8a; font-size:0.8rem; margin-top:10px; min-height:1em;}
+
+#adminPanel{position:fixed; inset:0; background:var(--paper); z-index:250; display:none; overflow-y:auto;}
+#adminPanel.open{display:block;}
+.admin-top{position:sticky; top:0; background:var(--ink-2); border-bottom:1px solid var(--line); z-index:5; padding:18px 0;}
+.admin-top .wrap{display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;}
+.admin-title{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.4rem; color:var(--gold);}
+.admin-nav{display:flex; gap:8px; flex-wrap:wrap;}
+.admin-nav button{padding:9px 18px; border:1px solid var(--line); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); border-radius:20px; transition:all .25s ease;}
+.admin-nav button.active{border-color:var(--gold); color:var(--gold);}
+.admin-body{padding:44px 0 90px;}
+.admin-section{display:none;}
+.admin-section.active{display:block;}
+.admin-block{border:1px solid var(--line); background:var(--ink-2); padding:30px; margin-bottom:26px;}
+.admin-block h3{font-style:italic; margin-bottom:22px; font-size:1.3rem; color:var(--gold-light);}
+.admin-list{display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); margin-top:24px;}
+.admin-row{background:var(--ink-2); padding:16px 18px; display:flex; align-items:center; gap:16px;}
+.admin-row img{width:52px; height:52px; object-fit:cover; border:1px solid var(--line); flex-shrink:0; background:var(--ink-2);}
+.admin-row .swdot{width:52px; height:52px; border-radius:50%; flex-shrink:0;}
+.admin-row .info{flex:1; min-width:0;}
+.admin-row .info h5{font-size:0.95rem; margin-bottom:3px;}
+.admin-row .info span{font-size:0.76rem; color:var(--muted);}
+.admin-row .tagnew{background:var(--gold); color:var(--ink); font-size:0.6rem; padding:3px 8px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600; margin-left:8px;}
+.admin-row .rowbtns{display:flex; gap:8px; flex-shrink:0;}
+.iconbtn{width:34px; height:34px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; border-radius:2px; font-size:0.85rem; transition:all .25s ease;}
+.iconbtn:hover{border-color:var(--gold); color:var(--gold);}
+.iconbtn.danger:hover{border-color:#e58a8a; color:#e58a8a;}
+.admin-actions{display:flex; justify-content:flex-end; gap:12px; margin-top:22px;}
+.imgpreview{width:100%; height:160px; object-fit:cover; border:1px solid var(--line); margin-top:10px; background:var(--ink-2);}
+.hint{font-size:0.76rem; color:var(--muted); margin-top:8px; line-height:1.5;}
+.empty-state{padding:40px 20px; text-align:center; color:var(--muted); font-size:0.9rem; border:1px dashed var(--line);}
+.small-btn{padding:9px 18px; font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; border:1px solid var(--gold); color:var(--gold); border-radius:2px;}
+.small-btn:hover{background:var(--gold); color:var(--ink);}
+.logout-btn{color:var(--muted); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; border:1px solid var(--line); padding:9px 16px; border-radius:20px;}
+.logout-btn:hover{color:#e58a8a; border-color:#e58a8a;}
+.banner-toggle-box{display:flex; align-items:center; justify-content:space-between; background:var(--ink-2); border:1px solid var(--line); padding:16px 20px; margin-bottom:20px;}
+.switch{position:relative; width:44px; height:24px; background:var(--ink-3); border:1px solid var(--line); border-radius:20px; flex-shrink:0; cursor:pointer;}
+.switch.on{background:var(--gold); border-color:var(--gold);}
+.switch::after{content:''; position:absolute; top:2px; left:2px; width:18px; height:18px; background:var(--cream); border-radius:50%; transition:transform .25s ease;}
+.switch.on::after{transform:translateX(20px); background:var(--ink);}
+</style>
+</head>
+<body>
+<div id="introVeil"><span>Claribel</span></div>
+<div id="scrollProgress"></div>
+<canvas id="ribbon"></canvas>
+<div id="grainOverlay"></div>
+<div class="site-content">
+
+<div id="newBanner"><div class="track" id="newBannerTrack"></div></div>
+
+<header id="siteHeader">
+  <div class="wrap barwrap">
+    <a class="logo" tabindex="0" role="button" onclick="goTo('accueil');return false;">Claribel <b>·</b></a>
+    <nav class="mainnav">
+      <a tabindex="0" role="button" onclick="goTo('accueil');return false;">Accueil</a>
+      <a tabindex="0" role="button" onclick="goTo('collection');return false;">Collection</a>
+      <a tabindex="0" role="button" onclick="goTo('brumes');return false;">Brumes</a>
+      <a tabindex="0" role="button" onclick="goTo('univers');return false;">Univers</a>
+      <a tabindex="0" role="button" onclick="goTo('contact');return false;">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-ghost" tabindex="0" role="button" onclick="goTo('contact');return false;">Nous contacter</a>
+      <a id="waHeaderBtn" target="_blank" class="btn btn-gold">WhatsApp</a>
+      <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.add('open')">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="mobileMenu">
+  <button class="close" onclick="document.getElementById('mobileMenu').classList.remove('open')">&times;</button>
+  <a tabindex="0" role="button" onclick="goTo('accueil');closeMobile();return false;">Accueil</a>
+  <a tabindex="0" role="button" onclick="goTo('collection');closeMobile();return false;">Collection Claribel</a>
+  <a tabindex="0" role="button" onclick="goTo('brumes');closeMobile();return false;">Brumes</a>
+  <a tabindex="0" role="button" onclick="goTo('univers');closeMobile();return false;">Univers</a>
+  <a tabindex="0" role="button" onclick="goTo('contact');closeMobile();return false;">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="accueil" style="padding-bottom:0;">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <span class="eyebrow">Maison de parfum · Cannes</span>
+      <h1 id="heroTitle"></h1>
+      <p id="heroSubtitle" class="fade-up"></p>
+      <div class="hero-actions fade-up">
+        <a class="btn btn-gold" tabindex="0" role="button" onclick="goTo('collection');return false;">Découvrir la collection</a>
+        <a id="waHeroBtn" target="_blank" class="btn btn-ghost">Nous écrire</a>
+      </div>
+    </div>
+    <div class="hero-visual fade-up">
+      <img id="heroImg" src="" alt="Flacon Claribel">
+      <div class="tag">« Sublimer votre sillage »</div>
+    </div>
+  </div>
+  <div class="scrolldown"><span>Défiler</span><div class="line"></div></div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat"><div class="stat-num" data-target="0" id="statParfums">0</div><div class="stat-label">Sillages signés Claribel</div></div>
+    <div class="stat"><div class="stat-num" data-target="0" id="statBrumes">0</div><div class="stat-label">Brumes fraîcheur 24h</div></div>
+    <div class="stat"><div class="stat-num" data-target="60" id="statLivraison">0</div><div class="stat-label">€ livraison offerte dès</div></div>
+    <div class="stat"><div class="stat-num" data-target="14" id="statRetour">0</div><div class="stat-label">Jours pour changer d'avis</div></div>
+  </div>
+</div>
+
+<!-- COLLECTION -->
+<section id="collection">
+  <div class="wrap">
+    <div class="section-head slide-left">
+      <span class="eyebrow">La collection</span>
+      <h2>Trois sillages d'exception</h2>
+      <p id="collectionIntro"></p>
+    </div>
+
+    <div class="promo" id="promoStrip" style="margin-bottom:56px;"></div>
+
+    <div class="tabs" id="collectionTabs"></div>
+    <div id="collectionPanels"></div>
+  </div>
+</section>
+
+<svg class="divider" viewBox="0 0 1180 34" preserveAspectRatio="none"><path d="M0 17 Q 295 0 590 17 T 1180 17"/></svg>
+
+<!-- SAVOIR-FAIRE -->
+<section id="univers">
+  <div class="wrap savoir">
+    <div class="savoir-img slide-right">
+      <img id="savoirImg" src="https://claribel-parfum.lovable.app/__l5e/assets-v1/94db955d-9a09-4b41-97e4-93a1735e4c22/WhatsApp_Image_2026-08-13_at_14.53.19.jpeg" alt="Savoir-faire Claribel">
+    </div>
+    <div class="savoir-text slide-left">
+      <span class="eyebrow">Savoir-faire</span>
+      <h2 id="savoirTitle"></h2>
+      <p id="savoirText"></p>
+      <a class="btn btn-ghost" style="margin-top:10px;" tabindex="0" role="button" onclick="goTo('contact');return false;">Visiter la boutique</a>
+    </div>
+  </div>
+</section>
+
+<svg class="divider" viewBox="0 0 1180 34" preserveAspectRatio="none"><path d="M0 17 Q 295 34 590 17 T 1180 17"/></svg>
+
+<!-- BRUMES -->
+<section id="brumes">
+  <div class="wrap">
+    <div class="section-head slide-left">
+      <span class="eyebrow">Brumes corporelles</span>
+      <h2>L'élégance d'une fraîcheur longue durée</h2>
+      <p id="brumesIntro"></p>
+    </div>
+    <div class="brume-grid" id="brumeGrid"></div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust-line wrap fade-up">
+  <span>Livraison offerte dès 60€</span><span>Retrait boutique gratuit</span><span>Retours sous 14 jours</span><span>Paiement sécurisé</span>
+</div>
+
+<!-- SOCIAL -->
+<section>
+  <div class="wrap">
+    <div class="section-head slide-left">
+      <span class="eyebrow">À suivre</span>
+      <h2>L'univers Claribel en images</h2>
+    </div>
+    <div class="social-strip">
+      <a class="social-card" id="igCard" target="_blank">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"/></svg></div>
+        <div><h4>Instagram</h4><p>@claribelparfum</p></div>
+      </a>
+      <a class="social-card" id="fbCard" target="_blank">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M14 21v-8h3l0.5-3.5H14V7.2c0-1 .3-1.7 1.7-1.7H17.5V2.2C17.2 2.1 16.1 2 14.8 2 12.1 2 10.3 3.6 10.3 6.5V9.5H7.3V13H10.3V21H14Z"/></svg></div>
+        <div><h4>Facebook</h4><p>Claribel</p></div>
+      </a>
+      <a class="social-card" id="ttCard" target="_blank">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M13 3v11.2a3.3 3.3 0 1 1-2.4-3.18"/><path d="M13 3c.4 2.4 2.2 4.1 4.6 4.4"/></svg></div>
+        <div><h4>TikTok</h4><p>@claribelparfum</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head slide-left">
+      <span class="eyebrow">Boutique</span>
+      <h2>Venez vivre l'expérience Claribel</h2>
+      <p>En boutique à Cannes ou en un message, notre équipe vous conseille sur votre prochain sillage.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg></div><div><h4>Adresse</h4><p id="cAddress"></p></div></div>
+        <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></div><div><h4>Téléphone / WhatsApp</h4><p id="cPhone"></p></div></div>
+        <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m4 6.5 8 6 8-6"/></svg></div><div><h4>Email</h4><p id="cEmail"></p></div></div>
+        <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></div><div><h4>Horaires</h4><p id="cHours"></p></div></div>
+        <div class="hero-actions" style="margin-top:30px;">
+          <a id="waContactBtn" target="_blank" class="btn btn-gold">Écrire sur WhatsApp</a>
+        </div>
+      </div>
+      <div class="mapbox"><iframe loading="lazy" id="mapFrame" src=""></iframe></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Claribel</h4>
+        <p style="max-width:320px;" id="footerAbout"></p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <a tabindex="0" role="button" onclick="goTo('collection');return false;">Collection Claribel</a>
+        <a tabindex="0" role="button" onclick="goTo('brumes');return false;">Brumes corporelles</a>
+        <a tabindex="0" role="button" onclick="goTo('univers');return false;">L'univers Claribel</a>
+        <a tabindex="0" role="button" onclick="goTo('contact');return false;">Contact</a>
+      </div>
+      <div>
+        <h4>Boutique</h4>
+        <p id="footerAddress"></p>
+        <p id="footerPhone"></p>
+        <p id="footerEmail"></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="yearNow"></span> Claribel — Tous droits réservés</span>
+      <div class="fb-links">
+        <a tabindex="0" role="button" onclick="return false;">Mentions légales</a>
+        <a tabindex="0" role="button" onclick="return false;">CGV</a>
+        <a tabindex="0" role="button" onclick="openAdmin();return false;">Espace Claribel</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div>
+<!-- /.site-content -->
+
+<a class="wa-float" id="waFloat" target="_blank" title="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></a>
+<button id="adminEntry" onclick="openAdmin()">Espace équipe</button>
+
+<div id="toast"></div>
+
+<!-- ================= PRODUCT QUICK VIEW ================= -->
+<div id="quickView">
+  <div class="qv-backdrop" onclick="closeQuickView()"></div>
+  <div class="qv-card">
+    <button class="qv-close" onclick="closeQuickView()" aria-label="Fermer">✕</button>
+    <div class="qv-grid">
+      <div class="qv-img"><img id="qvImg" src="" alt=""></div>
+      <div class="qv-body">
+        <div class="pnum" id="qvNum"></div>
+        <h3 id="qvSubtitle"></h3>
+        <div class="tags" id="qvTags"></div>
+        <p class="qv-desc" id="qvDesc"></p>
+        <div class="qv-notes" id="qvNotes"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ADMIN LOGIN ================= -->
+<div id="adminOverlay">
+  <div class="admin-login">
+    <span class="eyebrow" style="margin-bottom:14px;">Espace Claribel</span>
+    <h3>Accès équipe</h3>
+    <p>Gérez vos collections, produits et contenus du site.</p>
+    <div class="field">
+      <label>Mot de passe</label>
+      <input type="password" id="adminPwdInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')tryLogin()">
+    </div>
+    <div class="err-msg" id="loginErr"></div>
+    <button class="btn btn-gold" style="width:100%; justify-content:center; margin-top:10px;" onclick="tryLogin()">Se connecter</button>
+    <button class="btn btn-ghost" style="width:100%; justify-content:center; margin-top:10px;" onclick="closeAdmin()">Annuler</button>
+  </div>
+</div>
+
+<!-- ================= ADMIN PANEL ================= -->
+<div id="adminPanel">
+  <div class="admin-top">
+    <div class="wrap">
+      <div class="admin-title">Espace Claribel</div>
+      <div class="admin-nav">
+        <button class="active" data-tab="contenu" onclick="switchAdminTab('contenu')">Contenu</button>
+        <button data-tab="collections" onclick="switchAdminTab('collections')">Collections</button>
+        <button data-tab="produits" onclick="switchAdminTab('produits')">Produits & Brumes</button>
+        <button data-tab="parametres" onclick="switchAdminTab('parametres')">Paramètres</button>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <button class="btn btn-gold" style="padding:9px 18px;" onclick="downloadDataJson()">⭳ Publier (data.json)</button>
+        <button class="logout-btn" onclick="closeAdminPanel()">Fermer l'espace</button>
+      </div>
+    </div>
+    <div id="draftBanner" class="wrap" style="display:none; align-items:center; justify-content:space-between; gap:16px; padding-top:14px; font-size:0.8rem; color:var(--gold-light); flex-wrap:wrap;">
+      <span>✦ Modifications non publiées, visibles uniquement sur cet appareil. Téléchargez <b>data.json</b> et remplacez-le dans votre dépôt GitHub pour les mettre en ligne pour tout le monde.</span>
+      <button class="small-btn" style="border-color:var(--line); color:var(--muted); white-space:nowrap;" onclick="revertToPublished()">Annuler le brouillon</button>
+    </div>
+  </div>
+
+  <div class="admin-body wrap">
+
+    <!-- CONTENU -->
+    <div class="admin-section active" id="tab-contenu">
+      <div class="admin-block">
+        <h3>Banderole nouveauté</h3>
+        <div class="banner-toggle-box">
+          <div>
+            <h5 style="margin-bottom:4px;">Affichage automatique</h5>
+            <p class="hint" style="margin:0;">S'affiche seule dès qu'un produit ou une collection est marqué "Nouveau" ci-dessous.</p>
+          </div>
+          <div class="switch" id="bannerSwitch" onclick="toggleBannerEnabled()"></div>
+        </div>
+      </div>
+
+      <div class="admin-block">
+        <h3>Section d'accueil</h3>
+        <div class="field"><label>Titre principal (le mot entre * * sera doré)</label><input id="in_heroTitle"></div>
+        <div class="field"><label>Sous-titre</label><textarea id="in_heroSubtitle"></textarea></div>
+        <div class="field"><label>Image d'accueil (URL ou upload ci-dessous)</label><input id="in_heroImg"></div>
+        <input type="file" accept="image/*" onchange="handleImgUpload(event,'in_heroImg')">
+      </div>
+
+      <div class="admin-block">
+        <h3>Section Collection</h3>
+        <div class="field"><label>Texte d'introduction</label><textarea id="in_collectionIntro"></textarea></div>
+        <div class="field"><label>Bandeau offre (ex : promotions en cours)</label><input id="in_promoStrip"></div>
+      </div>
+
+      <div class="admin-block">
+        <h3>Section Savoir-faire</h3>
+        <div class="field"><label>Titre</label><input id="in_savoirTitle"></div>
+        <div class="field"><label>Texte</label><textarea id="in_savoirText"></textarea></div>
+      </div>
+
+      <div class="admin-block">
+        <h3>Section Brumes</h3>
+        <div class="field"><label>Texte d'introduction</label><textarea id="in_brumesIntro"></textarea></div>
+      </div>
+
+      <div class="admin-block">
+        <h3>À propos (pied de page)</h3>
+        <div class="field"><label>Texte court</label><textarea id="in_footerAbout"></textarea></div>
+      </div>
+
+      <div class="admin-actions"><button class="btn btn-gold" onclick="saveContent()">Enregistrer le contenu</button></div>
+    </div>
+
+    <!-- COLLECTIONS -->
+    <div class="admin-section" id="tab-collections">
+      <div class="admin-block">
+        <h3 id="collFormTitle">Nouvelle collection</h3>
+        <input type="hidden" id="coll_id">
+        <div class="field-row">
+          <div class="field"><label>Nom</label><input id="coll_name" placeholder="Ex : Collection Claribel Homme"></div>
+          <div class="field"><label>Type</label>
+            <select id="coll_type">
+              <option value="parfum">Parfums</option>
+              <option value="brume">Brumes</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label>Accroche</label><input id="coll_tagline" placeholder="Ex : Élégance florale orientale"></div>
+        <div class="field"><label>Description</label><textarea id="coll_desc"></textarea></div>
+        <div class="checkline"><input type="checkbox" id="coll_isnew"><label>Marquer comme nouveauté (déclenche la banderole)</label></div>
+        <div class="admin-actions">
+          <button class="small-btn" style="border-color:var(--line); color:var(--muted);" onclick="resetCollForm()">Annuler</button>
+          <button class="btn btn-gold" onclick="saveCollection()">Enregistrer la collection</button>
+        </div>
+      </div>
+      <div class="admin-block">
+        <h3>Collections existantes</h3>
+        <div class="admin-list" id="adminCollList"></div>
+      </div>
+    </div>
+
+    <!-- PRODUITS -->
+    <div class="admin-section" id="tab-produits">
+      <div class="admin-block">
+        <h3 id="prodFormTitle">Nouvel article</h3>
+        <input type="hidden" id="prod_id">
+        <div class="field"><label>Collection</label><select id="prod_collection" onchange="onProdCollectionChange()"></select></div>
+        <div class="field-row">
+          <div class="field"><label>Nom</label><input id="prod_name" placeholder="Ex : N° 321"></div>
+          <div class="field"><label>Sous-titre</label><input id="prod_subtitle" placeholder="Ex : Gourmandise & Sensualité"></div>
+        </div>
+        <div class="field"><label>Familles olfactives (séparées par ·)</label><input id="prod_family" placeholder="Fruité · Sucré · Vanillé"></div>
+        <div class="field"><label>Description</label><textarea id="prod_description"></textarea></div>
+
+        <div id="parfumNotesFields">
+          <div class="field-row">
+            <div class="field"><label>Notes de tête</label><input id="prod_notetop"></div>
+            <div class="field"><label>Notes de cœur</label><input id="prod_noteheart"></div>
+          </div>
+          <div class="field"><label>Notes de fond</label><input id="prod_notebase"></div>
+        </div>
+        <div id="brumeProfileField" style="display:none;">
+          <div class="field"><label>Profil olfactif court</label><input id="prod_profile" placeholder="Ex : Marine & cristalline"></div>
+        </div>
+
+        <div class="field-row">
+          <div class="field"><label>Prix (optionnel)</label><input id="prod_price" placeholder="Ex : 8€"></div>
+          <div class="field"><label>Couleur (brumes uniquement)</label><input type="color" id="prod_color" value="#9C7C42"></div>
+        </div>
+        <div class="field"><label>Image (URL ou upload — utile pour les parfums)</label><input id="prod_image"></div>
+        <input type="file" accept="image/*" onchange="handleImgUpload(event,'prod_image','prodPreview')">
+        <img id="prodPreview" class="imgpreview" style="display:none;">
+        <div class="checkline"><input type="checkbox" id="prod_isnew"><label>Marquer comme nouveauté (déclenche la banderole)</label></div>
+        <div class="admin-actions">
+          <button class="small-btn" style="border-color:var(--line); color:var(--muted);" onclick="resetProdForm()">Annuler</button>
+          <button class="btn btn-gold" onclick="saveProduct()">Enregistrer l'article</button>
+        </div>
+      </div>
+      <div class="admin-block">
+        <h3>Articles existants</h3>
+        <div class="admin-list" id="adminProdList"></div>
+      </div>
+    </div>
+
+    <!-- PARAMETRES -->
+    <div class="admin-section" id="tab-parametres">
+      <div class="admin-block">
+        <h3>Coordonnées de la boutique</h3>
+        <div class="field"><label>Adresse</label><input id="in_address"></div>
+        <div class="field-row">
+          <div class="field"><label>Téléphone</label><input id="in_phone"></div>
+          <div class="field"><label>Numéro WhatsApp (format international, ex 33749425775)</label><input id="in_whatsapp"></div>
+        </div>
+        <div class="field"><label>Email</label><input id="in_email"></div>
+        <div class="field"><label>Horaires</label><input id="in_hours"></div>
+        <div class="admin-actions"><button class="btn btn-gold" onclick="saveContact()">Enregistrer les coordonnées</button></div>
+      </div>
+      <div class="admin-block">
+        <h3>Réseaux sociaux</h3>
+        <div class="field"><label>Instagram (URL)</label><input id="in_instagram"></div>
+        <div class="field"><label>Facebook (URL)</label><input id="in_facebook"></div>
+        <div class="field"><label>TikTok (URL)</label><input id="in_tiktok"></div>
+        <div class="admin-actions"><button class="btn btn-gold" onclick="saveSocial()">Enregistrer les réseaux</button></div>
+      </div>
+      <div class="admin-block">
+        <h3>Sécurité</h3>
+        <div class="field"><label>Nouveau mot de passe</label><input type="password" id="in_newpwd" placeholder="Laisser vide pour ne pas changer"></div>
+        <div class="field"><label>Confirmer le mot de passe</label><input type="password" id="in_newpwd2"></div>
+        <div class="err-msg" id="pwdErr"></div>
+        <div class="admin-actions"><button class="btn btn-gold" onclick="changePassword()">Mettre à jour le mot de passe</button></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   STATE & STORAGE
+   ========================================================= */
+let state = { content:null, collections:[], products:[], auth:null };
+let isAuthed = false;
+let activeTab = 'all';
+
+const DEFAULT_CONTENT = {
+  heroTitle: "L'excellence de Grasse,\net la *magie de l'Orient*.",
+  heroSubtitle: "Découvrez nos parfums de Grasse et Orientaux d'exception. Des fragrances façonnées pour sublimer votre sillage.",
+  heroImg: "https://claribel-parfum.lovable.app/__l5e/assets-v1/c54fceec-cf1d-47cd-8221-d7800787caa0/WhatsApp_Image_2026-08-13_at_14.53.19_1.jpeg",
+  collectionIntro: "Chaque flacon Claribel naît de la rencontre entre les matières précieuses de Grasse et la richesse des accords orientaux, pensé pour durer sur la peau et dans la mémoire.",
+  promoStrip: "Offre d'exception · <b>2 Parfums pour 50€</b> · <b>1 Cadeau offert dès 75€ d'achat</b>",
+  savoirTitle: "Des fragrances de Grasse et d'Orient",
+  savoirText: "Chaque composition Claribel naît des matières les plus nobles : fruits rouges gorgés de soleil, fleurs blanches cueillies à l'aube, gousses de vanille et résines d'ambre. Une écriture olfactive généreuse, pensée pour durer sur la peau et dans la mémoire.",
+  brumesIntro: "Nos brumes corporelles légères offrent une fraîcheur 24h, au prix exceptionnel de 8€ — le geste parfumé du quotidien.",
+  footerAbout: "Maison de parfum à Cannes, Claribel façonne des fragrances de Grasse et d'Orient pensées pour sublimer votre sillage.",
+  address: "85 Bd de la République, 06400 Cannes",
+  phone: "07 49 42 57 75",
+  whatsapp: "33749425775",
+  email: "claribel06400@gmail.com",
+  hours: "Du mardi au samedi · 10h – 19h",
+  instagram: "https://www.instagram.com/claribelparfum/",
+  facebook: "https://www.facebook.com/p/Claribel-61573109439563/",
+  tiktok: "https://www.tiktok.com/@claribelparfum",
+  bannerEnabled: true
+};
+
+const DEFAULT_COLLECTIONS = [
+  {id:"c-claribel", name:"Collection Claribel", type:"parfum", tagline:"La signature de la maison", desc:"Nos trois sillages emblématiques, conçus à Cannes entre héritage de Grasse et sensualité orientale.", isNew:false}
+];
+
+const DEFAULT_PRODUCTS = [
+  {
+    id:"p-321", collectionId:"c-claribel", name:"N° 321", subtitle:"Gourmandise & Sensualité",
+    family:"Fruité · Sucré · Vanillé",
+    description:"Une tentation olfactive intense et envoûtante. Le N° 321 capture la gourmandise pure de fruits rouges éclatants et juteux, enrobés dans la caresse suave et rassurante d'une vanille précieuse. Une fragrance à la fois chic, sucrée et addictive, conçue pour laisser un sillage irrésistible de séduction.",
+    notetop:"Éclat de cerise noire et fraîcheur de fraise sauvage",
+    noteheart:"Nectar de framboise et gourmandise sucrée",
+    notebase:"Vanille onctueuse et veloutée",
+    price:"", image:"https://claribel-parfum.lovable.app/__l5e/assets-v1/c77651a5-1482-4a7a-aef9-0a9690776172/WhatsApp_Image_2026-08-13_at_14.53.16.jpeg",
+    isNew:false
+  },
+  {
+    id:"p-305", collectionId:"c-claribel", name:"N° 305", subtitle:"Chaleur Orientale & Mystère",
+    family:"Ambre · Fève Tonka · Sucré · Épicé",
+    description:"L'incarnation du luxe et de l'élégance orientale. Le N° 305 associe la profondeur mystique de l'ambre doré aux accents veloutés et chaleureux de la fève tonka. Rehaussé par une touche d'épices douces, ce parfum d'exception enveloppe la peau d'un voile magnétique, à la fois noble, chaleureux et raffiné.",
+    notetop:"Accords d'épices douces et envoûtantes",
+    noteheart:"Fève tonka gourmande et notes sucrées",
+    notebase:"Ambre profond et bois précieux",
+    price:"", image:"https://claribel-parfum.lovable.app/__l5e/assets-v1/1a54bf4f-c6b4-425f-bb0e-92a8d156e321/WhatsApp_Image_2026-08-13_at_14.53.18.jpeg",
+    isNew:false
+  },
+  {
+    id:"p-210", collectionId:"c-claribel", name:"N° 210", subtitle:"Évasion Tropicale & Floralité Solaire",
+    family:"Fruité · Sucré · Floral · Tropical",
+    description:"Une parenthèse lumineuse et exotique sous le soleil de la Côte d'Azur. Le N° 210 marie la délicatesse d'un bouquet de fleurs blanches à la douceur sucrée d'un nectar tropical. Radieux et joyeux, ce parfum évoque la fraîcheur des fleurs tropicales et la gourmandise des fruits gorgés de soleil.",
+    notetop:"Fruits exotiques et éclats sucrés",
+    noteheart:"Bouquet floral tropical et fleurs blanches",
+    notebase:"Douceur vanillée et caresse solaire",
+    price:"", image:"https://claribel-parfum.lovable.app/assets/claribel-210-C-grmpki.jpg",
+    isNew:false
+  },
+  {id:"b-sprint", collectionId:"__brumes__", name:"Sprint", subtitle:"", family:"", description:"Une brume vive et tonique, pensée pour accompagner les journées actives d'une énergie fraîche.", profile:"Vivifiante & sportive", price:"8€", color:"#8FBF7A", isNew:false},
+  {id:"b-aqua", collectionId:"__brumes__", name:"Aqua", subtitle:"", family:"", description:"Un sillage marin et cristallin, limpide comme une brise venue du large.", profile:"Marine & cristalline", price:"8€", color:"#7AAFD4", isNew:false},
+  {id:"b-lovely", collectionId:"__brumes__", name:"Lovely", subtitle:"", family:"", description:"Une brume poudrée et tendre, pour une allure romantique au quotidien.", profile:"Poudrée & romantique", price:"8€", color:"#E3A9C4", isNew:false},
+  {id:"b-ylang", collectionId:"__brumes__", name:"Ylang", subtitle:"", family:"", description:"Un cœur floral et solaire porté par la fleur d'ylang-ylang.", profile:"Florale & solaire", price:"8€", color:"#E8B75B", isNew:false},
+  {id:"b-candy", collectionId:"__brumes__", name:"Candy", subtitle:"", family:"", description:"Une brume sucrée et gourmande, aussi douce qu'une friandise.", profile:"Sucrée & gourmande", price:"8€", color:"#D98BB0", isNew:false},
+  {id:"b-pinky", collectionId:"__brumes__", name:"Pinky", subtitle:"", family:"", description:"Un sillage fruité et espiègle, plein de fraîcheur juvénile.", profile:"Fruitée & espiègle", price:"8€", color:"#E68C8C", isNew:false}
+];
+
+const BRUMES_VIRTUAL_ID = "__brumes__";
+const DRAFT_KEY = 'claribel_draft_v1';
+let isDraftMode = false;
+
+/* Published data lives in data.json (a plain file sitting next to index.html in the
+   GitHub repo). Admin edits are kept locally (this browser only) until the team
+   downloads the updated data.json and commits it to GitHub — that's the "publish" step
+   on a static host with no server/database. */
+async function fetchPublished(){
+  try{
+    const res = await fetch('./data.json', {cache:'no-store'});
+    if(!res.ok) throw new Error('data.json not found');
+    return await res.json();
+  }catch(e){
+    return null;
+  }
+}
+function loadDraft(){
+  try{ const raw = localStorage.getItem(DRAFT_KEY); return raw ? JSON.parse(raw) : null; }
+  catch(e){ return null; }
+}
+function saveDraft(){
+  try{ localStorage.setItem(DRAFT_KEY, JSON.stringify({content:state.content, collections:state.collections, products:state.products, auth:state.auth})); }
+  catch(e){ console.error('draft save failed', e); }
+}
+function clearDraft(){
+  try{ localStorage.removeItem(DRAFT_KEY); }catch(e){}
+}
+
+async function loadState(){
+  const draft = loadDraft();
+  const published = await fetchPublished();
+  const base = draft || published;
+  isDraftMode = !!draft;
+  state.content = (base && base.content) || DEFAULT_CONTENT;
+  state.collections = (base && base.collections) || DEFAULT_COLLECTIONS;
+  state.products = (base && base.products) || DEFAULT_PRODUCTS;
+  state.auth = (base && base.auth) || null;
+}
+
+function downloadDataJson(){
+  const payload = {content:state.content, collections:state.collections, products:state.products, auth:state.auth};
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'data.json';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+async function revertToPublished(){
+  if(!confirm("Annuler toutes les modifications non publiées de ce navigateur et revenir à la version en ligne ?")) return;
+  clearDraft();
+  const published = await fetchPublished();
+  state.content = (published && published.content) || DEFAULT_CONTENT;
+  state.collections = (published && published.collections) || DEFAULT_COLLECTIONS;
+  state.products = (published && published.products) || DEFAULT_PRODUCTS;
+  state.auth = (published && published.auth) || null;
+  isDraftMode = false;
+  renderAll();
+  fillContentForm(); fillContactForm(); renderAdminCollectionsList(); renderAdminProductsList(); refreshCollectionDropdown(); refreshBannerSwitch(); refreshDraftBanner();
+  showToast('Version publiée restaurée.');
+}
+
+function refreshDraftBanner(){
+  const el = document.getElementById('draftBanner');
+  if(!el) return;
+  el.style.display = isDraftMode ? 'flex' : 'none';
+}
+
+
+/* =========================================================
+   RENDER — PUBLIC SITE
+   ========================================================= */
+function esc(str){ return (str||'').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function renderAll(){
+  safeRun('renderBanner', renderBanner);
+  safeRun('renderHero', renderHero);
+  safeRun('renderStats', renderStats);
+  safeRun('renderCollectionSection', renderCollectionSection);
+  safeRun('renderBrumes', renderBrumes);
+  safeRun('renderMisc', renderMisc);
+  safeRun('initScrollFx', initScrollFx);
+}
+function safeRun(label, fn){
+  try{ fn(); }catch(e){ console.error(label+' failed', e); }
+}
+
+function renderBanner(){
+  const items = [];
+  state.collections.filter(c=>c.isNew).forEach(c=> items.push(`Nouvelle collection · ${esc(c.name)}`));
+  state.products.filter(p=>p.isNew).forEach(p=> items.push(`Nouveauté · ${esc(p.name)}${p.subtitle? ' — '+esc(p.subtitle):''}`));
+  const banner = document.getElementById('newBanner');
+  const track = document.getElementById('newBannerTrack');
+  if(!state.content.bannerEnabled || items.length===0){ banner.classList.remove('show'); track.innerHTML=''; return; }
+  const full = items.map(t=>`<span>✦ ${t}</span>`).join('');
+  track.innerHTML = full + full;
+  banner.classList.add('show');
+}
+
+function formatHeroTitle(str){
+  // *word* -> gold em ; \n -> <br>
+  const escaped = esc(str).replace(/\n/g,'<br>');
+  return escaped.replace(/\*(.+?)\*/g, '<em>$1</em>');
+}
+
+function renderHero(){
+  document.getElementById('heroTitle').innerHTML = formatHeroTitle(state.content.heroTitle);
+  document.getElementById('heroSubtitle').textContent = state.content.heroSubtitle;
+  document.getElementById('heroImg').src = state.content.heroImg;
+  const wa = 'https://wa.me/'+ (state.content.whatsapp||'').replace(/\D/g,'');
+  document.getElementById('waHeaderBtn').href = wa;
+  document.getElementById('waHeroBtn').href = wa;
+  document.getElementById('waContactBtn').href = wa;
+  document.getElementById('waFloat').href = wa;
+  splitHeroTitle();
+}
+
+function splitHeroTitle(){
+  try{
+    const el = document.getElementById('heroTitle');
+    const html = el.innerHTML;
+    const tmp = document.createElement('div'); tmp.innerHTML = html;
+    const VOID_TAGS = ['BR','IMG','HR'];
+    const walker = (node)=>{
+      const frag = document.createDocumentFragment();
+      node.childNodes.forEach(child=>{
+        if(child.nodeType===3){
+          child.textContent.split(/(\s+)/).forEach(w=>{
+            if(w.trim()===''){ frag.appendChild(document.createTextNode(w)); }
+            else{ const s=document.createElement('span'); s.className='reveal-word'; s.textContent=w; frag.appendChild(s); }
+          });
+        } else if(VOID_TAGS.includes(child.nodeName)){
+          frag.appendChild(child.cloneNode(false));
+        } else {
+          const clone = child.cloneNode(false);
+          clone.appendChild(walker(child));
+          frag.appendChild(clone);
+        }
+      });
+      return frag;
+    };
+    el.innerHTML = '';
+    el.appendChild(walker(tmp));
+    const words = el.querySelectorAll('.reveal-word');
+    words.forEach((w,i)=> setTimeout(()=> w.classList.add('in'), 200 + i*45));
+  }catch(e){
+    console.error('splitHeroTitle failed', e);
+    // fall back: make sure the title is at least visible, unanimated
+    const el = document.getElementById('heroTitle');
+    if(el) el.querySelectorAll('.reveal-word').forEach(w=> w.classList.add('in'));
+  }
+}
+
+function countProducts(collectionId){ return state.products.filter(p=>p.collectionId===collectionId).length; }
+
+function renderStats(){
+  const parfumCount = state.products.filter(p=>p.collectionId!==BRUMES_VIRTUAL_ID).length;
+  const brumeCount = state.products.filter(p=>p.collectionId===BRUMES_VIRTUAL_ID).length;
+  document.getElementById('statParfums').dataset.target = parfumCount;
+  document.getElementById('statBrumes').dataset.target = brumeCount;
+}
+
+function renderCollectionSection(){
+  document.getElementById('collectionIntro').textContent = state.content.collectionIntro;
+  document.getElementById('promoStrip').innerHTML = state.content.promoStrip;
+  const parfumCollections = state.collections.filter(c=>c.type==='parfum');
+  const tabsEl = document.getElementById('collectionTabs');
+  const panelsEl = document.getElementById('collectionPanels');
+  tabsEl.innerHTML=''; panelsEl.innerHTML='';
+
+  if(parfumCollections.length===0){
+    panelsEl.innerHTML = '<div class="empty-state">Aucune collection de parfums pour le moment.</div>';
+    return;
+  }
+
+  parfumCollections.forEach((c,i)=>{
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (i===0?' active':'');
+    btn.textContent = c.name;
+    btn.onclick = ()=> switchTab(c.id);
+    btn.dataset.tabid = c.id;
+    tabsEl.appendChild(btn);
+
+    const panel = document.createElement('div');
+    panel.className = 'tab-panel card-grid' + (i===0?' active':'');
+    panel.id = 'panel-'+c.id;
+    const prods = state.products.filter(p=>p.collectionId===c.id);
+    if(prods.length===0){
+      panel.innerHTML = '<div class="empty-state">Aucun parfum ajouté dans cette collection pour le moment.</div>';
+    } else {
+      panel.innerHTML = prods.map(productCardHTML).join('');
+    }
+    panelsEl.appendChild(panel);
+  });
+}
+
+function productCardHTML(p){
+  const tags = (p.family||'').split('·').map(t=>t.trim()).filter(Boolean).join(' · ');
+  return `
+  <div class="pcard fade-up">
+    <button class="pcard-img" onclick="openQuickView('${p.id}')" aria-label="Découvrir ${esc(p.name)}">
+      ${p.isNew? '<div class="pcard-badge">Nouveau</div>' : ''}
+      <img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy">
+      <span class="pcard-hint">Découvrir</span>
+    </button>
+    <div class="pcard-body">
+      <div class="pnum">${esc(p.name)}</div>
+      <h3>${esc(p.subtitle)}</h3>
+      <div class="tags">${esc(tags)}</div>
+    </div>
+  </div>`;
+}
+
+
+function switchTab(id){
+  document.querySelectorAll('#collectionTabs .tab-btn').forEach(b=> b.classList.toggle('active', b.dataset.tabid===id));
+  document.querySelectorAll('#collectionPanels .tab-panel').forEach(p=> p.classList.toggle('active', p.id==='panel-'+id));
+}
+
+/* ---------- product quick view ---------- */
+function openQuickView(id){
+  const p = state.products.find(x=>x.id===id);
+  if(!p) return;
+  const tags = (p.family||'').split('·').map(t=>t.trim()).filter(Boolean).join(' · ');
+  document.getElementById('qvImg').src = p.image || '';
+  document.getElementById('qvImg').alt = p.name || '';
+  document.getElementById('qvNum').textContent = p.name || '';
+  document.getElementById('qvSubtitle').textContent = p.subtitle || '';
+  document.getElementById('qvTags').textContent = tags;
+  document.getElementById('qvDesc').textContent = p.description || '';
+  const notesEl = document.getElementById('qvNotes');
+  if(p.collectionId===BRUMES_VIRTUAL_ID){
+    notesEl.innerHTML = p.profile ? `<div class="note-line"><span class="k">Profil</span><span class="v">${esc(p.profile)}</span></div>` : '';
+  } else {
+    notesEl.innerHTML = `
+      <div class="note-line"><span class="k">En tête</span><span class="v">${esc(p.notetop)}</span></div>
+      <div class="note-line"><span class="k">En cœur</span><span class="v">${esc(p.noteheart)}</span></div>
+      <div class="note-line"><span class="k">En fond</span><span class="v">${esc(p.notebase)}</span></div>`;
+  }
+  document.getElementById('quickView').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeQuickView(){
+  document.getElementById('quickView').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='Escape') closeQuickView();
+});
+
+function renderBrumes(){
+  document.getElementById('brumesIntro').textContent = state.content.brumesIntro;
+  const grid = document.getElementById('brumeGrid');
+  const brumes = state.products.filter(p=>p.collectionId===BRUMES_VIRTUAL_ID);
+  if(brumes.length===0){ grid.innerHTML = '<div class="empty-state">Aucune brume ajoutée pour le moment.</div>'; return; }
+  grid.innerHTML = brumes.map(b=>`
+    <div class="brume-card fade-up" style="--sw:${esc(b.color||'#9C7C42')}55;">
+      ${b.isNew? '<div class="newtag">Nouveau</div>':''}
+      ${b.price? `<div class="price">${esc(b.price)}</div>` : ''}
+      <div class="brume-swatch" style="background:${esc(b.color||'#9C7C42')};"></div>
+      <h3>${esc(b.name)}</h3>
+      <div class="profile">${esc(b.profile)}</div>
+      <p>${esc(b.description)}</p>
+    </div>`).join('');
+}
+
+function renderMisc(){
+  document.getElementById('savoirTitle').textContent = state.content.savoirTitle;
+  document.getElementById('savoirText').textContent = state.content.savoirText;
+  document.getElementById('footerAbout').textContent = state.content.footerAbout;
+  document.getElementById('footerAddress').textContent = state.content.address;
+  document.getElementById('footerPhone').textContent = state.content.phone;
+  document.getElementById('footerEmail').textContent = state.content.email;
+  document.getElementById('cAddress').textContent = state.content.address;
+  document.getElementById('cPhone').textContent = state.content.phone;
+  document.getElementById('cEmail').textContent = state.content.email;
+  document.getElementById('cHours').textContent = state.content.hours;
+  document.getElementById('igCard').href = state.content.instagram;
+  document.getElementById('fbCard').href = state.content.facebook;
+  document.getElementById('ttCard').href = state.content.tiktok;
+  document.getElementById('yearNow').textContent = new Date().getFullYear();
+  const q = encodeURIComponent(state.content.address);
+  document.getElementById('mapFrame').src = `https://www.google.com/maps?q=${q}&output=embed`;
+}
+
+/* =========================================================
+   SCROLL FX: header, reveals, counters, dividers
+   ========================================================= */
+function initScrollFx(){
+  const progressEl = document.getElementById('scrollProgress');
+  window.addEventListener('scroll', ()=>{
+    document.getElementById('siteHeader').classList.toggle('scrolled', window.scrollY>40);
+    if(progressEl){
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max>0 ? (window.scrollY/max)*100 : 0;
+      progressEl.style.width = pct+'%';
+    }
+  });
+
+  if(typeof IntersectionObserver === 'undefined'){
+    document.querySelectorAll('.fade-up, .slide-left, .slide-right, .divider').forEach(el=> el.classList.add('in'));
+    document.querySelectorAll('.stat-num').forEach(el=> animateCount(el));
+    return;
+  }
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); }
+    });
+  }, {threshold:0.15});
+  document.querySelectorAll('.fade-up, .slide-left, .slide-right, .divider').forEach(el=> io.observe(el));
+
+  const statIo = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        animateCount(e.target);
+        statIo.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.4});
+  document.querySelectorAll('.stat-num').forEach(el=> statIo.observe(el));
+
+  // safety net: guarantee visibility even if an observer never fires (older webviews, etc.)
+  setTimeout(()=>{
+    document.querySelectorAll('.fade-up:not(.in), .slide-left:not(.in), .slide-right:not(.in), .divider:not(.in)').forEach(el=> el.classList.add('in'));
+  }, 2500);
+}
+
+function animateCount(el){
+  const target = parseInt(el.dataset.target||'0',10);
+  const dur = 1400; const start = performance.now();
+  function tick(now){
+    const p = Math.min(1, (now-start)/dur);
+    const eased = 1 - Math.pow(1-p, 3);
+    el.textContent = Math.round(eased*target);
+    if(p<1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+/* =========================================================
+   SIGNATURE ANIMATION — "sillage" ribbon canvas
+   ========================================================= */
+function initRibbon(){
+  const canvas = document.getElementById('ribbon');
+  const ctx = canvas.getContext('2d');
+  let w,h;
+  function resize(){ w=canvas.width=window.innerWidth*devicePixelRatio; h=canvas.height=window.innerHeight*devicePixelRatio; buildParticles(); }
+
+  // Soft floating motes drifting slowly upward — same principle as a bokeh/dust-particle
+  // film loop, translated into ink-on-white tones so it reads as premium, not decorative.
+  let particles = [];
+  const DENSITY = 18000; // px^2 per particle, scales count to screen size
+
+  function rand(a,b){ return a + Math.random()*(b-a); }
+
+  function makeParticle(spawnAnywhere){
+    const big = Math.random() < 0.35;
+    return {
+      x: rand(0, w),
+      y: spawnAnywhere ? rand(0, h) : h + rand(0, h*0.15),
+      r: (big ? rand(18,46) : rand(1.2,3.4)) * devicePixelRatio,
+      speed: (big ? rand(0.06,0.13) : rand(0.15,0.34)) * devicePixelRatio,
+      sway: rand(0.15, 0.5),
+      swaySpeed: rand(0.15, 0.4),
+      phase: rand(0, Math.PI*2),
+      alpha: big ? rand(0.03,0.07) : rand(0.10,0.24),
+      soft: big
+    };
+  }
+
+  function buildParticles(){
+    const count = Math.max(24, Math.min(70, Math.round((w*h)/(DENSITY*devicePixelRatio*devicePixelRatio))));
+    particles = Array.from({length:count}, ()=> makeParticle(true));
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    particles.forEach(p=>{
+      p.y -= p.speed;
+      p.phase += p.swaySpeed*0.01;
+      const x = p.x + Math.sin(p.phase)*p.sway*20*devicePixelRatio;
+      if(p.y < -p.r*2){
+        Object.assign(p, makeParticle(false));
+        p.y = h + p.r;
+      }
+      if(p.soft){
+        const grad = ctx.createRadialGradient(x,p.y,0, x,p.y,p.r);
+        grad.addColorStop(0, `rgba(20,20,20,${p.alpha})`);
+        grad.addColorStop(1, 'rgba(20,20,20,0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(x,p.y,p.r,0,Math.PI*2);
+        ctx.fill();
+      } else {
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(20,20,20,${p.alpha})`;
+        ctx.arc(x,p.y,p.r,0,Math.PI*2);
+        ctx.fill();
+      }
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+function closeMobile(){ document.getElementById('mobileMenu').classList.remove('open'); }
+
+function goTo(id){
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> t.classList.remove('show'), 2600);
+}
+
+/* =========================================================
+   ADMIN — AUTH
+   ========================================================= */
+function simpleHashFallback(text){
+  // Used only if crypto.subtle is unavailable (e.g. page opened directly from disk
+  // instead of served over https). Not cryptographic, just keeps the admin gate working.
+  let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+  for(let i=0;i<text.length;i++){
+    const ch = text.charCodeAt(i);
+    h1 = Math.imul(h1 ^ ch, 2654435761);
+    h2 = Math.imul(h2 ^ ch, 1597334677);
+  }
+  h1 = Math.imul(h1 ^ (h1>>>16), 2246822507) ^ Math.imul(h2 ^ (h2>>>13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2>>>16), 2246822507) ^ Math.imul(h1 ^ (h1>>>13), 3266489909);
+  return 'fb-' + (h1>>>0).toString(16) + (h2>>>0).toString(16);
+}
+async function sha256(text){
+  try{
+    if(!(window.crypto && window.crypto.subtle)) return simpleHashFallback(text);
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  }catch(e){
+    return simpleHashFallback(text);
+  }
+}
+
+async function ensurePasswordSeed(){
+  if(!state.auth || !state.auth.hash){
+    const hash = await sha256('claribel2026');
+    state.auth = {hash};
+  }
+  return state.auth;
+}
+
+function openAdmin(){
+  document.getElementById('adminOverlay').classList.add('open');
+  document.getElementById('adminPwdInput').value='';
+  document.getElementById('loginErr').textContent='';
+  setTimeout(()=> document.getElementById('adminPwdInput').focus(), 200);
+}
+function closeAdmin(){ document.getElementById('adminOverlay').classList.remove('open'); }
+
+async function tryLogin(){
+  const pwd = document.getElementById('adminPwdInput').value;
+  const auth = await ensurePasswordSeed();
+  const hash = await sha256(pwd);
+  if(hash===auth.hash){
+    isAuthed = true;
+    closeAdmin();
+    openAdminPanel();
+  } else {
+    document.getElementById('loginErr').textContent = "Mot de passe incorrect.";
+  }
+}
+
+function openAdminPanel(){
+  document.getElementById('adminPanel').classList.add('open');
+  fillContentForm();
+  fillContactForm();
+  renderAdminCollectionsList();
+  renderAdminProductsList();
+  refreshCollectionDropdown();
+  refreshBannerSwitch();
+  refreshDraftBanner();
+}
+function closeAdminPanel(){ document.getElementById('adminPanel').classList.remove('open'); }
+
+function scrollAdminToTop(){
+  const panel = document.getElementById('adminPanel');
+  if(panel) panel.scrollTo({top:0, behavior:'smooth'});
+}
+
+function switchAdminTab(name){
+  document.querySelectorAll('.admin-nav button').forEach(b=> b.classList.toggle('active', b.dataset.tab===name));
+  document.querySelectorAll('.admin-section').forEach(s=> s.classList.toggle('active', s.id==='tab-'+name));
+}
+
+/* =========================================================
+   ADMIN — CONTENU
+   ========================================================= */
+function fillContentForm(){
+  const c = state.content;
+  document.getElementById('in_heroTitle').value = c.heroTitle;
+  document.getElementById('in_heroSubtitle').value = c.heroSubtitle;
+  document.getElementById('in_heroImg').value = c.heroImg;
+  document.getElementById('in_collectionIntro').value = c.collectionIntro;
+  document.getElementById('in_promoStrip').value = c.promoStrip;
+  document.getElementById('in_savoirTitle').value = c.savoirTitle;
+  document.getElementById('in_savoirText').value = c.savoirText;
+  document.getElementById('in_brumesIntro').value = c.brumesIntro;
+  document.getElementById('in_footerAbout').value = c.footerAbout;
+}
+
+async function saveContent(){
+  const c = state.content;
+  c.heroTitle = document.getElementById('in_heroTitle').value;
+  c.heroSubtitle = document.getElementById('in_heroSubtitle').value;
+  c.heroImg = document.getElementById('in_heroImg').value;
+  c.collectionIntro = document.getElementById('in_collectionIntro').value;
+  c.promoStrip = document.getElementById('in_promoStrip').value;
+  c.savoirTitle = document.getElementById('in_savoirTitle').value;
+  c.savoirText = document.getElementById('in_savoirText').value;
+  c.brumesIntro = document.getElementById('in_brumesIntro').value;
+  c.footerAbout = document.getElementById('in_footerAbout').value;
+  saveDraft(); isDraftMode = true; refreshDraftBanner();
+  renderAll();
+  showToast('Contenu enregistré.');
+}
+
+function refreshBannerSwitch(){
+  document.getElementById('bannerSwitch').classList.toggle('on', !!state.content.bannerEnabled);
+}
+async function toggleBannerEnabled(){
+  state.content.bannerEnabled = !state.content.bannerEnabled;
+  refreshBannerSwitch();
+  saveDraft(); isDraftMode = true; refreshDraftBanner();
+  renderBanner();
+  showToast(state.content.bannerEnabled? 'Banderole activée.' : 'Banderole désactivée.');
+}
+
+function fillContactForm(){
+  const c = state.content;
+  document.getElementById('in_address').value = c.address;
+  document.getElementById('in_phone').value = c.phone;
+  document.getElementById('in_whatsapp').value = c.whatsapp;
+  document.getElementById('in_email').value = c.email;
+  document.getElementById('in_hours').value = c.hours;
+  document.getElementById('in_instagram').value = c.instagram;
+  document.getElementById('in_facebook').value = c.facebook;
+  document.getElementById('in_tiktok').value = c.tiktok;
+}
+async function saveContact(){
+  const c = state.content;
+  c.address = document.getElementById('in_address').value;
+  c.phone = document.getElementById('in_phone').value;
+  c.whatsapp = document.getElementById('in_whatsapp').value;
+  c.email = document.getElementById('in_email').value;
+  c.hours = document.getElementById('in_hours').value;
+  saveDraft(); isDraftMode = true; refreshDraftBanner();
+  renderAll();
+  showToast('Coordonnées enregistrées.');
+}
+async function saveSocial(){
+  const c = state.content;
+  c.instagram = document.getElementById('in_instagram').value;
+  c.facebook = document.getElementById('in_facebook').value;
+  c.tiktok = document.getElementById('in_tiktok').value;
+  saveDraft(); isDraftMode = true; refreshDraftBanner();
+  renderAll();
+  showToast('Réseaux sociaux enregistrés.');
+}
+async function changePassword(){
+  const p1 = document.getElementById('in_newpwd').value;
+  const p2 = document.getElementById('in_newpwd2').value;
+  const err = document.getElementById('pwdErr');
+  if(!p1){ err.textContent='Saisissez un mot de passe.'; return; }
+  if(p1.length<6){ err.textContent='6 caractères minimum.'; return; }
+  if(p1!==p2){ err.textContent='Les mots de passe ne correspondent pas.'; return; }
+  const hash = await sha256(p1);
+  state.auth = {hash};
+  saveDraft(); isDraftMode = true; refreshDraftBanner();
+  err.textContent='';
+  document.getElementById('in_newpwd').value=''; document.getElementById('in_newpwd2').value='';
+  showToast('Mot de passe mis à jour.');
+}
+
+/* =========================================================
+   ADMIN — COLLECTIONS CRUD
+   ========================================================= */
+function resetCollForm(){
+  document.getElementById('coll_id').value='';
+  document.getElementById('coll_name').value='';
+  document.getElementById('coll_type').value='parfum';
+  document.getElementById('coll_tagline').value='';
+  document.getElementById('coll_desc').value='';
+  document.getElementById('coll_isnew').checked=false;
+  document.getElementById('collFormTitle').textContent='Nouvelle collection';
+}
+
+function renderAdminCollectionsList(){
+  const list = document.getElementById('adminCollList');
+  if(state.collections.length===0){ list.innerHTML='<div class="empty-state">Aucune collection.</div>'; return; }
+  list.innerHTML = state.collections.map(c=>`
+    <div class="admin-row">
+      <div class="info">
+        <h5>${esc(c.name)} ${c.isNew?'<span class="tagnew">Nouveau</span>':''}</h5>
+        <span>${c.type==='parfum'?'Parfums':'Brumes'} · ${countProducts(c.id)} article(s)</span>
+      </div>
+      <div class="rowbtns">
+        <button class="iconbtn" onclick="editCollection('${c.id}')">✎</button>
+        <button class="iconbtn danger" onclick="deleteCollection('${c.id}')">🗑</button>
+      </div>
+    </div>`).join('');
+}
+
+function editCollection(id){
+  const c = state.collections.find(x=>x.id===id); if(!c) return;
+  document.getElementById('coll_id').value=c.id;
+  document.getElementById('coll_name').value=c.name;
+  document.getElementById('coll_type').value=c.type;
+  document.getElementById('coll_tagline').value=c.tagline||'';
+  document.getElementById('coll_desc').value=c.desc||'';
+  document.getElementById('coll_isnew').checked=!!c.isNew;
+  document.getElementById('collFormTitle').textContent='Modifier la collection';
+  scrollAdminToTop();
+}
+
+async function saveCollection(){
+  const id = document.getElementById('coll_id').value;
+  const name = document.getElementById('coll_name').value.trim();
+  if(!name){ showToast("Le nom de la collection est requis."); return; }
+  const obj = {
+    id: id || ('c-'+Date.now()),
+    name,
+    type: document.getElementById('coll_type').value,
+    tagline: document.getElementById('coll_tagline').value,
+    desc: document.getElementById('coll_desc').value,
+    isNew: document.getElementById('coll_isnew').checked
+  };
+  if(id){ state.collections = state.collections.map(c=> c.id===id? obj : c); }
+  else{ state.collections.push(obj); }
+  saveDraft(); isDraftMode = true; refreshDraftBanner();
+  resetCollForm();
+  renderAdminCollectionsList();
+  refreshCollectionDropdown();
+  renderAll();
+  showToast('Collection enregistrée.');
+}
+
+async function deleteCollection(id){
+  const inUse = state.products.some(p=>p.collectionId===id);
+  if(inUse && !confirm("Cette collection contient des articles. Les supprimer aussi ?")) return;
+  state.collections = state.collections.filter(c=>c.id!==id);
+  state.products = state.products.filter(p=>p.collectionId!==id);
+  saveDraft(); isDraftMode = true; refreshDraftBanner();
+  saveDraft(); isDraftMode = true; refreshDraftBanner();
+  renderAdminCollectionsList();
+  renderAdminProductsList();
+  refreshCollectionDropdown();
+  renderAll();
+  showToast('Collection supprimée.');
+}
+
+/* =========================================================
+   ADMIN — PRODUCTS CRUD
+   ========================================================= */
+function refreshCollectionDropdown(){
+  const sel = document.getElementById('prod_collection');
+  const opts = state.collections.map(c=>`<option value="${c.id}">${esc(c.name)} (${c.type==='parfum'?'Parfums':'Brumes'})</option>`);
+  opts.push(`<option value="${BRUMES_VIRTUAL_ID}">Brumes corporelles (page dédiée)</option>`);
+  sel.innerHTML = opts.join('');
+  onProdCollectionChange();
+}
+
+function collectionTypeFor(collectionId){
+  if(collectionId===BRUMES_VIRTUAL_ID) return 'brume';
+  const c = state.collections.find(x=>x.id===collectionId);
+  return c? c.type : 'parfum';
+}
+
+function onProdCollectionChange(){
+  const type = collectionTypeFor(document.getElementById('prod_collection').value);
+  document.getElementById('parfumNotesFields').style.display = type==='parfum' ? '' : 'none';
+  document.getElementById('brumeProfileField').style.display = type==='brume' ? '' : 'none';
+}
+
+function resetProdForm(){
+  document.getElementById('prod_id').value='';
+  document.getElementById('prod_collection').value = state.collections[0]? state.collections[0].id : BRUMES_VIRTUAL_ID;
+  document.getElementById('prod_name').value='';
+  document.getElementById('prod_subtitle').value='';
+  document.getElementById('prod_family').value='';
+  document.getElementById('prod_description').value='';
+  document.getElementById('prod_notetop').value='';
+  document.getElementById('prod_noteheart').value='';
+  document.getElementById('prod_notebase').value='';
+  document.getElementById('prod_profile').value='';
+  document.getElementById('prod_price').value='';
+  document.getElementById('prod_color').value='#9C7C42';
+  document.getElementById('prod_image').value='';
+  document.getElementById('prod_isnew').checked=false;
+  document.getElementById('prodFormTitle').textContent='Nouvel article';
+  document.getElementById('prodPreview').style.display='none';
+  onProdCollectionChange();
+}
+
+function renderAdminProductsList(){
+  const list = document.getElementById('adminProdList');
+  if(state.products.length===0){ list.innerHTML='<div class="empty-state">Aucun article.</div>'; return; }
+  list.innerHTML = state.products.map(p=>{
+    const collName = p.collectionId===BRUMES_VIRTUAL_ID ? 'Brumes corporelles' : ((state.collections.find(c=>c.id===p.collectionId)||{}).name || '—');
+    const thumb = p.collectionId===BRUMES_VIRTUAL_ID
+      ? `<div class="swdot" style="background:${esc(p.color||'#9C7C42')};"></div>`
+      : `<img src="${esc(p.image)}" alt="">`;
+    return `
+    <div class="admin-row">
+      ${thumb}
+      <div class="info">
+        <h5>${esc(p.name)} ${p.isNew?'<span class="tagnew">Nouveau</span>':''}</h5>
+        <span>${esc(collName)}${p.subtitle? ' · '+esc(p.subtitle):''}</span>
+      </div>
+      <div class="rowbtns">
+        <button class="iconbtn" onclick="editProduct('${p.id}')">✎</button>
+        <button class="iconbtn danger" onclick="deleteProduct('${p.id}')">🗑</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function editProduct(id){
+  const p = state.products.find(x=>x.id===id); if(!p) return;
+  document.getElementById('prod_id').value=p.id;
+  document.getElementById('prod_collection').value=p.collectionId;
+  document.getElementById('prod_name').value=p.name||'';
+  document.getElementById('prod_subtitle').value=p.subtitle||'';
+  document.getElementById('prod_family').value=p.family||'';
+  document.getElementById('prod_description').value=p.description||'';
+  document.getElementById('prod_notetop').value=p.notetop||'';
+  document.getElementById('prod_noteheart').value=p.noteheart||'';
+  document.getElementById('prod_notebase').value=p.notebase||'';
+  document.getElementById('prod_profile').value=p.profile||'';
+  document.getElementById('prod_price').value=p.price||'';
+  document.getElementById('prod_color').value=p.color||'#9C7C42';
+  document.getElementById('prod_image').value=p.image||'';
+  document.getElementById('prod_isnew').checked=!!p.isNew;
+  document.getElementById('prodFormTitle').textContent="Modifier l'article";
+  const preview = document.getElementById('prodPreview');
+  if(p.image){ preview.src=p.image; preview.style.display='block'; } else { preview.style.display='none'; }
+  onProdCollectionChange();
+  scrollAdminToTop();
+}
+
+async function saveProduct(){
+  const id = document.getElementById('prod_id').value;
+  const name = document.getElementById('prod_name').value.trim();
+  if(!name){ showToast('Le nom est requis.'); return; }
+  const collectionId = document.getElementById('prod_collection').value;
+  const obj = {
+    id: id || ('p-'+Date.now()),
+    collectionId,
+    name,
+    subtitle: document.getElementById('prod_subtitle').value,
+    family: document.getElementById('prod_family').value,
+    description: document.getElementById('prod_description').value,
+    notetop: document.getElementById('prod_notetop').value,
+    noteheart: document.getElementById('prod_noteheart').value,
+    notebase: document.getElementById('prod_notebase').value,
+    profile: document.getElementById('prod_profile').value,
+    price: document.getElementById('prod_price').value,
+    color: document.getElementById('prod_color').value,
+    image: document.getElementById('prod_image').value,
+    isNew: document.getElementById('prod_isnew').checked
+  };
+  if(id){ state.products = state.products.map(p=> p.id===id? obj : p); }
+  else{ state.products.push(obj); }
+  saveDraft(); isDraftMode = true; refreshDraftBanner();
+  resetProdForm();
+  renderAdminProductsList();
+  renderAll();
+  showToast('Article enregistré.');
+}
+
+async function deleteProduct(id){
+  if(!confirm('Supprimer cet article ?')) return;
+  state.products = state.products.filter(p=>p.id!==id);
+  saveDraft(); isDraftMode = true; refreshDraftBanner();
+  renderAdminProductsList();
+  renderAll();
+  showToast('Article supprimé.');
+}
+
+/* =========================================================
+   IMAGE UPLOAD (compressed to base64)
+   ========================================================= */
+function handleImgUpload(event, targetInputId, previewId){
+  const file = event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev){
+    const img = new Image();
+    img.onload = function(){
+      const maxW = 1100;
+      const scale = Math.min(1, maxW/img.width);
+      const cw = Math.round(img.width*scale), ch = Math.round(img.height*scale);
+      const canvas = document.createElement('canvas');
+      canvas.width = cw; canvas.height = ch;
+      canvas.getContext('2d').drawImage(img,0,0,cw,ch);
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+      document.getElementById(targetInputId).value = dataUrl;
+      if(previewId){
+        const pv = document.getElementById(previewId);
+        pv.src = dataUrl; pv.style.display='block';
+      }
+      showToast('Image prête — enregistrez le formulaire pour la publier.');
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+/* =========================================================
+   INIT
+   ========================================================= */
+(async function init(){
+  const introStart = performance.now();
+  try{ await loadState(); }catch(e){ console.error('loadState failed', e); state.content=DEFAULT_CONTENT; state.collections=DEFAULT_COLLECTIONS; state.products=DEFAULT_PRODUCTS; }
+  try{ renderAll(); }catch(e){ console.error('renderAll failed', e); }
+  try{ initRibbon(); }catch(e){ console.error('initRibbon failed', e); }
+  try{ resetCollForm(); }catch(e){ console.error('resetCollForm failed', e); }
+  try{ resetProdForm(); }catch(e){ console.error('resetProdForm failed', e); }
+  try{ await ensurePasswordSeed(); }catch(e){ console.error('ensurePasswordSeed failed', e); }
+  const elapsed = performance.now() - introStart;
+  setTimeout(()=>{
+    const veil = document.getElementById('introVeil');
+    if(veil) veil.classList.add('hide');
+  }, Math.max(0, 700 - elapsed));
+})();
+</script>
+</body>
+</html>
